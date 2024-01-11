@@ -1,1 +1,33 @@
-../ustj.sty
+\ProvidesPackage{ustj}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[hyphens]{url}
+
+\usepackage{fontspec}
+\setmainfont{Linux Libertine O}
+\newfontfamily\monofont{Urbit Sans Mono TT SemiBold}
+\renewcommand{\setmonofont}{\monofont}
+\renewcommand{\texttt}[1]{{\monofont #1}}
+
+\usepackage{listings}
+\lstset{
+    basicstyle=\setmonofont\small,
+    showspaces=false
+}
+\usepackage{titlesec}
+\newfontfamily\urbitfont{Urbit Sans TT SemiBold}
+\titleformat{\section}{\urbitfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\urbitfont\Large\bfseries}{\thesubsection}{1em}{}
+\usepackage{titling}
+\renewcommand{\maketitlehooka}{\urbitfont\bfseries}
+
+%% Configure first-page footer and later-page header.
+\usepackage{fancyhdr}
+
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\newcommand{\patp}[1]{\texttt{\textasciitilde #1}}
