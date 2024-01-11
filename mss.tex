@@ -1,0 +1,116 @@
+\documentclass[twoside]{article}
+
+\usepackage{ustj}
+
+\newcommand{\authorname}{Ernest P. Worrell}
+\newcommand{\authorpatp}{\patp{sampel-palnet}}
+\newcommand{\affiliation}{Kamp Kikakee}
+
+%  Make first page footer:
+\fancypagestyle{firststyle}{%
+\fancyhf{}% Clear header/footer
+\fancyhead{}
+\fancyfoot[L]{{\footnotesize
+              %% We toggle between these:
+              Manuscript submitted for review.\\
+              % {\it Urbit Systems Technical Journal} I:1 (2024):  1–3. \\
+              ~ \\
+              Address author correspondence to \authorpatp.
+              }}
+}
+%  Arrange subsequent pages:
+\fancyhf{}
+\fancyhead[LE]{{\urbitfont Urbit Systems Technical Journal}}
+\fancyhead[RO]{Floating-Point Arithmetic on Deterministic Systems}
+\fancyfoot[LE,RO]{\thepage}
+
+%%MANUSCRIPT
+\title{Ernest Goes to Mars:  An Enquiry into the Foundations of Artificial Stupidity}
+\author{\authorname~\authorpatp \\ \affiliation}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firststyle}
+
+\begin{abstract}
+In this groundbreaking paper, we embark on a cosmic journey with the renowned character Ernest P. Worrell as he ventures into the unexplored realm of Martian computing. Drawing inspiration from Ernest's comically ingenious encounters with everyday challenges, we investigate the foundations of what we term "Artificial Stupidity." As Ernest grapples with Martian technology, we delve into the intricacies of programming errors, algorithmic missteps, and the curious phenomena that arise when human-like intelligence meets extraterrestrial computing systems. Our analysis sheds light on the unexpected intersections between humor, artificial intelligence, and the cosmic absurdity of Martian software. Join us in this interplanetary exploration as we unravel the mysteries of Artificial Stupidity through the lens of Ernest's interstellar escapades.
+\end{abstract}
+
+% We will adjust page numbering in final editing.
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\tableofcontents
+
+\section{Introduction}
+
+Introduce the scope of your article and investigation.
+
+\section{Background and Literature}
+
+Exposite the relevant background and literature.
+
+\begin{enumerate}
+  \item  Prefer to \texttt{enumerate}.
+  \item  It is easier to refer to than \texttt{itemize}.
+\end{enumerate}
+
+\noindent
+Mark \texttt{\textbackslash noindent} in paragraphs that continue the thought of an \texttt{\textbackslash enumerate} block.
+
+\section{Urbit's Implementation}
+
+Oftentimes you will then turn to exploring how Urbit or closely related systems like Nockchain have approached or considered a problem.
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <stdio.h>
+
+double compute(float a, float b) {
+    return a * a + b * b;
+}
+
+int main() {
+    float x = 2.5;
+    float y = 3.7;
+
+    double result = compute(x, y);
+
+    printf("Result: %lf\n", result);
+
+    return 0;
+}
+\end{lstlisting}
+
+\noindent
+That code snippet was part of the text, and not a standalone entity to which we make separate repeated reference.
+
+\begin{figure}
+  \begin{lstlisting}[language=Python, caption={Example Python Code}, label={lst:example}]
+  def hello_world():
+      print("Hello, world!")
+  \end{lstlisting}
+\end{figure}
+
+Refer to the code listing: Listing~\ref{lst:example}.  (Note that we don't suppress indentation since it's a float.)
+
+
+\section{A Wild Ernest Appears}
+
+You can have as many sections as make sense.  Only sections and subsections appear in the table of contents.
+
+\section{Conclusion}
+
+To summarize, why did you write it?  Why do we care?  What impact should it have on Urbit development?
+
+Your bibliography is a separate BibTeX file.  We use the \texttt{plainnat} bibliography style.  You can use \texttt{natbib} citation commands like \texttt{\textbackslash citep\{wikipedia\}} for parenthesized references.  Use \texttt{\textbackslash citet\{wikipedia\}} for inline references.  You can also use \texttt{\textbackslash citeauthor\{wikipedia\}} for the principal author's name.
+
+``You can use traditional TeX---or LaTeX---representations'' \citep{Varney1987}.
+
+“Or you can use fancy quotes—and symbols.”
+
+\bibliographystyle{plainnat}
+\bibliography{ernest}
+\end{document}
