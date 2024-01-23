@@ -13,10 +13,53 @@
 \renewcommand{\texttt}[1]{{\monofont #1}}
 
 \usepackage{listings}
-\lstset{
-    basicstyle=\setmonofont\small,
-    showspaces=false
+\lstdefinelanguage{Hoon}
+{
+  alsoletter={
+    ~!@\#\$\%^&*-_=+:;<>\,.?/|`"'\\
+  },
+  keywords={
+    |_, |\%, |@, |:, |., |-, |^, |~, |*, |=, |?, |\$,
+    \$@, \$_, \$:, \$\%, \$<, \$>, \$|, \$\&, \$^, \$~, \$-, \$=, \$?, \$;,
+    \%_, \%., \%^, \%+, \%-, \%:, \%~, \%*, \%=,
+    :_, :^, :+, :-, :~, :*,
+    .+, .*, .=, .?, .^,
+    --, ==,
+    ^|, ^., ^-, ^+, ^\&, ^~, ^=, ^?, ^*, ^:,
+    ~|, ~\$, ~_, ~\%, ~/, ~<, ~>, ~+, ~\&, ~?, ~=, ~!,
+    ;:, ;/, ;<, ;~, ;;, ;+, ;*, ;=,
+    =|, =., =?, =^, =:, =/, =;, =<, =>, =-, =*, =\,, =+, =~,
+    ?|, ?:, ?., ?<, ?>, ?-, ?^, ?=, ?\#, ?+, ?\&, ?@, ?~, ?!,
+    !:, !., !\,, !;, !>, !<, !@, !=, !?, !!,
+    /?, /-, /+, /=, /\%, /\$, /*,
+    +|, +\$, ++, +*,
+  },
+  morekeywords={
+    @, @c, @d, @da, @dr, @f, @i, @if, @is, @n, @p, @q, @r, @rh, @rs, @rd, @rq, @s, @sb, @sd, @sv, @sw, @sx, @t, @ta, @tas, @u, @ub, @uc, @ud, @uv, @uw, @ux
+    unit, cord, arch, tape, list, map, set
+  },
+  sensitive=true,
+  morecomment=[l]{::},
+  morestring=[b]",
+  morestring=[d]'
 }
+\lstset{
+    language=Hoon,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    commentstyle=\color{Gray}\emph,
+    keywordstyle=\color{Orange}\bfseries
+}
+
+
 \usepackage{titlesec}
 \newfontfamily\urbitfont{Urbit Sans TT SemiBold}
 \titleformat{\section}{\urbitfont\Large\bfseries}{\thesection}{1em}{}
