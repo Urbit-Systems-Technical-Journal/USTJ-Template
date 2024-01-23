@@ -1,6 +1,15 @@
-# USTJ Template
+# Urbit Systems Technical Journal—Template Repo
 
-The template for USTJ LaTeX submissions.  You may use this as a template repo; if you do not see this option, then you should *import* this repo, not *fork* it.
+Welcome, prospective USTJ author.  Please keep the following in mind:
+
+1. USTJ is a technical journal.  We will generally consider any content related to solid state computing.  We do not wade into social or cultural commentary.  We welcome content that is not specifically about or on Urbit as well.
+2. As an author, you shoud join the discussion group on Urbit at `~fabled-wander-lagrev-nocfep/urbit-system-technical-journal--planning-and-editors-`.  If you are not on Urbit yet, please DM us at `@UrbitSTJ` on Twitter/X.  If you are interested in participating as a reviewer or editor, please join the group as well.
+3. We will review your article in a timely manner.  (Sometimes we will do this more than once.)  We will plan on which issue to release it based on the volume of content we are handling at any given time.
+4. We accept submissions in LaTeX or Markdown.  Final article preparation is always done in LaTeX but we can convert it for you from Markdown.
+
+---
+
+This is the template repository for USTJ LaTeX submissions.  You may use this as a template repo; if you do not see this option, then you should *import* this repo, not *fork* it.
 
 Line numbers should be kept on for submissions.
 
