@@ -47,7 +47,22 @@
   morestring=[b]",
   morestring=[d]'
 }
-\lstset{
+\lstdefinestyle{inlinecode}{
+    language=Hoon,
+    basicstyle=\setmonofont,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    breaklines=true,
+    breakatwhitespace=true,
+    commentstyle=\color{Gray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
+\lstdefinestyle{listingcode}{
     language=Hoon,
     basicstyle=\setmonofont\small,
     numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
@@ -82,4 +97,3 @@
 % Turn off when producing release version.
 \usepackage{lineno}
 \linenumbers
-
