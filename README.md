@@ -19,16 +19,27 @@ The PDF can be built using `make`.
 
 ##  Style Guide
 
+### General
+
+1. We compile using XeTeX, but you should be careful about nonstandard characters.  Check your output log and PDF.
+
+### Citations
+
+1. Citations should be standardized:
+    1. Cite a UIP as `\citet{UIP-0100}` → `UIP-0100`.
+    2. Cite a PR as `\citet[UrbitPR6447}` → `#6447``.
+    3. Cite a GitHub repo as `\citet{urbit/urbit}` → `urbit/urbit`.
+    4. Cite a gist as a `@online` (generally) or `@techreport` (if from an organization like Urbit Foundation).
+2. The standard `mss.bib` file provides common Urbit repos, UIPs, etc.  You may add to it locally or otherwise merge it into your preferred personal BibTeX file.  Contributions to the standard `mss.bib` are welcome.
+3. We provide `\citepr{urbit/urbit_6891}` → `#6891` as an inline citation for PRs.
+4. We compile using [BibLaTeX (`biber`)](https://mirrors.rit.edu/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf) for more modern bibliographic entry options.
+
+### Code
+
 1. Arms are referred to with `++` or `+$`, not a simple `+` or `$`.
-2. Either `fontspec` with `\string` or `verbatim` may be used to display the many Hoon and Nock ASCII characters that are meaningful in LaTeX.  (`[`, `]`, `~`, and so forth.)
-3. All code should be in `lstlisting` or `\texttt`.
-    1. Inline code should be marked with `\texttt` or (preferably) `\lstinline[style=inlinecode]`.
-    2. Listings should be marked with `\begin{lstlisting}[style=listingcode]`.  You may add C, Python, etc. as needed to the style file.
-4. Nock opcodes are written numerically, e.g. “Nock 11”.
-5. We compile using XeTeX, but you should be careful about nonstandard characters.  Check your output log and PDF.
+2. Vanes should be referred to by their primary name, e.g. “Ames” not `%ames`.
+3. When referring to the source implementation of a particular piece of software, it may be appropriate to favor the syntax `/lib/agentio` or `/sys/hoon`.  File suffixes (marks) should not typically be included in these cases.
+4. Code should be displayed with either `\lstinline[style=inlinecode]{.^}` or `\begin{lstlisting}[style=listingcode]` blocks.
+    1. Other languages may be added as `\lstdefinestyle` in your copy of `ustj.sty`.
+5. Nock opcodes are written numerically, e.g. “Nock 11”.
 6. All references to runes should be of the form “`.^` dotket” including the pronunciation at each point.  This will make the text friendlier to outside readers and more searchable.  You may define a shorthand such as `\newcommand{\dotket}{\lstinline[style=inlinecode]{.^} dotket}`.  In this case, please make sure to use it with an explicit space afterwards:  “the \dotket~rune”.
-7. Citations should be standardized:
-    1. Cite a UIP as `\citet{UIP-100}`.
-    2. Cite a PR as `\citet[UrbitPR6447}` → `urbit/urbit` #6447.
-    3. Cite a GitHub repo.
-    4. Cite a gist.
