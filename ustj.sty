@@ -6,8 +6,6 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{natbib}
-\usepackage[hyphens]{url}
 
 \usepackage{fontspec}
 \setmainfont{Linux Libertine O}
@@ -93,7 +91,27 @@
 \pagestyle{fancy}
 
 \newcommand{\patp}[1]{\texttt{\textasciitilde #1}}
+\newcommand{\github}[1]{\texttt{@#1}}
 
 % Turn off when producing release version.
 \usepackage{lineno}
 \linenumbers
+
+% Bibliography management
+\usepackage[
+    backend=biber,
+    style=authoryear-icomp,
+    sortlocale=en_US,
+    natbib=true,
+    url=false,
+    eprint=false
+]{biblatex}
+%\usepackage{natbib}
+% \usepackage[hyphens]{url}
+% Define a custom citation command for GitHub PRs
+\DeclareCiteCommand{\citetpr}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\printfield{usera}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}

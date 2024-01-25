@@ -2,6 +2,8 @@
 
 \usepackage{ustj}
 
+\addbibresource{mss.bib}
+
 \newcommand{\authorname}{Ernest P. Worrell}
 \newcommand{\authorpatp}{\patp{sampel-palnet}}
 \newcommand{\affiliation}{Kamp Kikakee}
@@ -62,7 +64,7 @@ Mark \texttt{\textbackslash noindent} in paragraphs that continue the thought of
 
 \section{Urbit's Implementation}
 
-Oftentimes you will then turn to exploring how Urbit or closely related systems like Nockchain have approached or considered a problem.
+Oftentimes you will then turn to exploring how Urbit or closely related systems like Nockchain have approached or considered a problem.  You can look at a PR like \citetpr{urbit/urbit_6891}.
 
 \lstset{language=C}
 \begin{lstlisting}
@@ -111,6 +113,5 @@ Your bibliography is a separate BibTeX file.  We use the \texttt{plainnat} bibli
 
 “Or you can use fancy quotes—and symbols.”
 
-\bibliographystyle{plainnat}
-\bibliography{ernest}
+\printbibliography
 \end{document}
