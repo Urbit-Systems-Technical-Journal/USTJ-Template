@@ -1,17 +1,20 @@
 \ProvidesPackage{ustj}
 
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{graphicx}
 
-\usepackage{fontspec}
+\usepackage{mathspec}
 \setmainfont{Linux Libertine O}
 \newfontfamily\monofont{Urbit Sans Mono TT SemiBold}[Scale=MatchLowercase]
 \renewcommand{\setmonofont}{\monofont}
 \renewcommand{\texttt}[1]{{\monofont #1}}
+% Set the monospace font for math mode
+%\usepackage{mathspec}
+\setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
 
 \usepackage{listings}
 \usepackage[dvipsnames]{xcolor}
@@ -75,6 +78,36 @@
     commentstyle=\color{Gray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
+\lstdefinestyle{listingcode_python}{
+    language=Python,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    commentstyle=\color{Gray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
+\lstdefinestyle{listingcode_c}{
+    language=C,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    commentstyle=\color{Gray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
 
 
 \usepackage{titlesec}
@@ -83,6 +116,9 @@
 \titleformat{\subsection}{\urbitfont\Large\bfseries}{\thesubsection}{1em}{}
 \usepackage{titling}
 \renewcommand{\maketitlehooka}{\urbitfont\bfseries}
+
+%% Page size
+\usepackage[paperheight=8.5in,paperwidth=5.5in,margin=1in,heightrounded,showframe]{geometry}
 
 %% Configure first-page footer and later-page header.
 \usepackage{fancyhdr}
@@ -115,3 +151,4 @@
    \printtext[bibhyperref]{\printfield{usera}}}
   {\multicitedelim}
   {\usebibmacro{postnote}}
+
