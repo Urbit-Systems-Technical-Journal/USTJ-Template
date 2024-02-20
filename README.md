@@ -44,3 +44,4 @@ The PDF can be built using `make`.
 5. Nock opcodes are written numerically, e.g. “Nock 11”.
 6. All references to runes should be of the form “`.^` dotket” including the pronunciation at each point.  This will make the text friendlier to outside readers and more searchable.  You may define a shorthand such as `\newcommand{\dotket}{\lstinline[style=inlinecode]{.^} dotket}`.  In this case, please make sure to use it with an explicit space afterwards:  “the \dotket~rune”.
 7. Due to page size and typeface limitations, code is limited to **54 CHARACTERS WIDE**.  Make do, Hoon is flexible.
+8. Refer to Clay files as “`/lib/test` on the `%base` desk“.  (I.e., omit the mark if it is not significant to the discussion.)
