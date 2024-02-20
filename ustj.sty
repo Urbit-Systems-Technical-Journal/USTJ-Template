@@ -6,6 +6,7 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{calc} % for \heightof in \tombstone
 
 \usepackage{mathspec}
 \setmainfont{Linux Libertine O}
@@ -116,6 +117,8 @@
 \titleformat{\subsection}{\urbitfont\Large\bfseries}{\thesubsection}{1em}{}
 \usepackage{titling}
 \renewcommand{\maketitlehooka}{\urbitfont\bfseries}
+% Redefine the format of the abstract heading to make it invisible
+\AtBeginDocument{\renewcommand{\abstractname}{}}
 
 %% Page size
 \usepackage[paperheight=8.5in,paperwidth=5.5in,margin=1in,heightrounded,showframe]{geometry}
@@ -126,7 +129,7 @@
 \setlength{\headheight}{15.2pt}
 \pagestyle{fancy}
 
-\newcommand{\patp}[1]{\texttt{\textasciitilde #1}}
+\newcommand{\patp}[1]{\texttt{\textasciitilde#1}}
 \newcommand{\github}[1]{\texttt{@#1}}
 
 % Turn off when producing release version.
@@ -142,6 +145,7 @@
     url=false,
     eprint=false
 ]{biblatex}
+\usepackage[hidelinks]{hyperref}
 %\usepackage{natbib}
 % \usepackage[hyphens]{url}
 % Define a custom citation command for GitHub PRs
@@ -152,3 +156,64 @@
   {\multicitedelim}
   {\usebibmacro{postnote}}
 
+% Define a custom citation command for GitHub PRs
+\DeclareCiteCommand{\citetrepo}
+{\usebibmacro{prenote}}
+{\usebibmacro{citeindex}%
+ \printtext[bibhyperref]{\printfield{usera}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+% Define the custom citation command for @online entries
+\DeclareCiteCommand{\customonlinecite}
+  {\usebibmacro{prenote}}
+  {\printnames{author}%
+   \setunit{\addcomma\space}%
+   \printfield{title}%
+   \setunit{\addcomma\space}%
+   (\printfield{year}).\space
+   \printfield{titleaddon}%
+   \setunit{\addperiod\space\textsc{url}\addcolon\space}%
+   \texttt{\url{\thefield{url}}}%
+   \setunit{\addspace(visited on\space}%
+   \printdate% Print the access date
+   \setunit{\addcomma\space}\bibstring{urlseen}\addperiod\space}%
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Use the custom citation command for @online entries
+\DeclareFieldFormat[online]{titleaddon}{#1} % Adjust the formatting of titleaddon
+\DeclareBibliographyDriver{online}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor}%
+  \setunit{\addspace}%
+  \usebibmacro{title}%
+  \newunit\newblock
+  \printfield{titleaddon}% Print titleaddon
+  \newunit\newblock
+  \usebibmacro{url+urldate}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+% Define the custom citation command for @software entries
+\DeclareBibliographyDriver{software}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor}%
+  \setunit{\addspace}%
+  \usebibmacro{title}%
+  \newunit\newblock
+  \usebibmacro{url+urldate}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+\newcommand{\tombstone}{\resizebox{!}{\heightof{T}}{\includegraphics{ustj-logo}}}
