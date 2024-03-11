@@ -79,6 +79,20 @@
     commentstyle=\color{Gray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
+\lstdefinestyle{listingblock}{
+    language=Hoon,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    commentstyle=\color{Gray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
 \lstdefinestyle{listingcode_python}{
     language=Python,
     basicstyle=\setmonofont\small,
@@ -145,9 +159,46 @@
     url=false,
     eprint=false
 ]{biblatex}
-\usepackage[hidelinks]{hyperref}
-%\usepackage{natbib}
-% \usepackage[hyphens]{url}
+\usepackage[hidelinks,breaklinks=true]{hyperref}
+
+% Patch the \bibsetup command to set the bibliography to be ragged-right
+\usepackage{etoolbox}
+\appto{\bibsetup}{\raggedright\small}
+
+% Define a command to check for usera field and use it if available
+\makeatletter
+\newcommand{\iffieldundef}[3]{%
+  \@ifundefined{abx@field@#1}{#2}{#3}%
+}
+\makeatother
+\newcommand{\citeauthorhandle}[1]{%
+  \iffieldundef{usera}
+    {\citeauthor{#1}}
+    {\printfield{usera}}%
+}
+
+% Redefine \citep and \citet
+\renewcommand{\citep}[1]{(\citeauthorhandle{#1}, \citeyear{#1})}
+\renewcommand{\citet}[1]{\citeauthorhandle{#1} (\citeyear{#1})}
+
+% Define a new date format
+\usepackage[USenglish]{babel}
+\DefineBibliographyExtras{USenglish}{%
+  % yyyya format for long dates
+  \protected\def\mkbibdatelong#1#2#3{%
+    \iffieldundef{#1}{}{\stripzeros{\thefield{#1}}}%
+  }%
+  % ~yyyy.mm.dd format for short dates
+  \protected\def\mkbibdateshort#1#2#3{%
+    \textasciitilde
+    \iffieldundef{#1}{}{\stripzeros{\thefield{#1}}}%
+    .%
+    \iffieldundef{#2}{}{\stripzeros{\thefield{#2}}}%
+    .%
+    \iffieldundef{#3}{}{\stripzeros{\thefield{#3}}}%
+  }%
+}
+
 % Define a custom citation command for GitHub PRs
 \DeclareCiteCommand{\citetpr}
   {\usebibmacro{prenote}}
@@ -216,4 +267,14 @@
     {}%
   \usebibmacro{finentry}}
 
+% Define a command to enclose the title in quotation marks
+\newcommand{\quotetitle}[1]{``#1''}
+
+% Use the command to enclose the title for @online and @software entries
+\DeclareFieldFormat[online]{title}{\quotetitle{#1}}
+\DeclareFieldFormat[software]{title}{\quotetitle{#1}}
+
 \newcommand{\tombstone}{\resizebox{!}{\heightof{T}}{\includegraphics{ustj-logo}}}
+
+\hfuzz=0.1pt % Adjust the value as needed
+\hbadness=10000 % This value disables any reporting of overfull boxes
