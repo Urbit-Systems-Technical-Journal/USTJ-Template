@@ -23,6 +23,11 @@ The PDF can be built using `make`.
 
 1. We compile using XeTeX, but you should be careful about nonstandard characters.  Check your output log and PDF.
 
+### Stylistic
+
+1. In general, abbreviations or all-caps words that are three or more characters in length should be rendered as small caps using `{\sc this format}`.  There are exceptions, such as source code and partially minuscule terms.
+2. Prefer to render code using `\lstinline[style=inlinecode]{}` to `\texttt{}` for source code.  (This does not require escaping `%`, `$`, `_`, etc.)
+
 ### Citations
 
 1. Citations should be standardized:
