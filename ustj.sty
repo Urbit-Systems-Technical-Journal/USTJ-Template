@@ -16,6 +16,14 @@
 % Set the monospace font for math mode
 %\usepackage{mathspec}
 \setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
+% Define a new font family for small caps with FakeSlant
+\newfontfamily\slantedsmallcapsfont{Linux Libertine O}[
+    FakeSlant = 0.1 % Adjust the slant amount as needed
+]
+% Redefine \textsc to make small caps 25% larger
+% \let\oldtextsc\textsc
+% \renewcommand{\textsc}[1]{\scalebox{1.25}{\oldtextsc{#1}}}
+\newcommand{\ssc}[1]{{\slantedsmallcapsfont\textsc{#1}}}
 
 \usepackage{listings}
 \usepackage[dvipsnames]{xcolor}
@@ -128,7 +136,9 @@
 \usepackage{titlesec}
 \newfontfamily\urbitfont{Urbit Sans TT SemiBold}
 \titleformat{\section}{\urbitfont\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\urbitfont\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsection}{\urbitfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\urbitfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\urbitfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \usepackage{titling}
 \renewcommand{\maketitlehooka}{\urbitfont\bfseries}
 % Redefine the format of the abstract heading to make it invisible
@@ -160,6 +170,7 @@
     eprint=false
 ]{biblatex}
 \usepackage[hidelinks,breaklinks=true]{hyperref}
+\renewcommand{\UrlBreaks}{\do\/\do-}
 
 % Patch the \bibsetup command to set the bibliography to be ragged-right
 \usepackage{etoolbox}
