@@ -47,6 +47,7 @@
     !:, !., !\,, !;, !>, !<, !@, !=, !?, !!,
     /?, /-, /+, /=, /\%, /\$, /*,
     +|, +\$, ++, +*,
+    \%|, \%\&
   },
   morekeywords={
     @, @c, @d, @da, @dr, @f, @i, @if, @is, @n, @p, @q, @r, @rh, @rs, @rd, @rq, @s, @sb, @sd, @sv, @sw, @sx, @t, @ta, @tas, @u, @ub, @uc, @ud, @uv, @uw, @ux
@@ -69,7 +70,7 @@
     upquote=true,
     breaklines=true,
     breakatwhitespace=true,
-    commentstyle=\color{Gray}\emph,
+    commentstyle=\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingcode}{
@@ -84,7 +85,7 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{Gray}\emph,
+    commentstyle=\color{darkgray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingblock}{
@@ -98,7 +99,7 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{Gray}\emph,
+    commentstyle=\color{darkgray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingcode_python}{
@@ -113,7 +114,7 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{Gray}\emph,
+    commentstyle=\color{darkgray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingcode_c}{
@@ -128,10 +129,57 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{Gray}\emph,
+    commentstyle=\color{darkgray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgray}\ttfamily,
+  stringstyle=\color{darkgray}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinestyle{listingcode_js}{
+    language=JavaScript,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    breaklines=true,
+    commentstyle=\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
+\usepackage{listings-rust}
+\lstdefinestyle{listingcode_rust}{
+    language=Rust,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    breaklines=true,
+    commentstyle=\color{darkgray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
 
 \usepackage{titlesec}
 \newfontfamily\urbitfont{Urbit Sans TT SemiBold}
@@ -260,7 +308,8 @@
     {\usebibmacro{related:init}%
      \usebibmacro{related}}
     {}%
-  \usebibmacro{finentry}}
+  \usebibmacro{finentry}
+}
 
 % Define the custom citation command for @software entries
 \DeclareBibliographyDriver{software}{%
@@ -276,7 +325,21 @@
     {\usebibmacro{related:init}%
      \usebibmacro{related}}
     {}%
-  \usebibmacro{finentry}}
+  \usebibmacro{finentry}
+}
+
+% Redefine the bibliography driver for @techreport entries
+\DeclareBibliographyDriver{techreport}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor}%
+  \setunit{\addspace}%
+  \printfield{title}%
+  \newunit\newblock
+  \usebibmacro{url}%
+  \newunit\newblock
+  \usebibmacro{finentry}%
+}
 
 % Define a command to enclose the title in quotation marks
 \newcommand{\quotetitle}[1]{``#1''}
