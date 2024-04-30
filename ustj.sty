@@ -9,13 +9,11 @@
 \usepackage{calc} % for \heightof in \tombstone
 
 \usepackage{mathspec}
-\setmainfont{Linux Libertine O}
+\setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
+\usepackage[osf]{libertineRoman}
 \newfontfamily\monofont{Urbit Sans Mono TT SemiBold}[Scale=MatchLowercase]
 \renewcommand{\setmonofont}{\monofont}
 \renewcommand{\texttt}[1]{{\monofont #1}}
-% Set the monospace font for math mode
-%\usepackage{mathspec}
-\setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
 % Define a new font family for small caps with FakeSlant
 \newfontfamily\slantedsmallcapsfont{Linux Libertine O}[
     FakeSlant = 0.1 % Adjust the slant amount as needed
@@ -47,7 +45,6 @@
     !:, !., !\,, !;, !>, !<, !@, !=, !?, !!,
     /?, /-, /+, /=, /\%, /\$, /*,
     +|, +\$, ++, +*,
-    \%|, \%\&
   },
   morekeywords={
     @, @c, @d, @da, @dr, @f, @i, @if, @is, @n, @p, @q, @r, @rh, @rs, @rd, @rq, @s, @sb, @sd, @sv, @sw, @sx, @t, @ta, @tas, @u, @ub, @uc, @ud, @uv, @uw, @ux
@@ -70,8 +67,8 @@
     upquote=true,
     breaklines=true,
     breakatwhitespace=true,
-    commentstyle=\emph,
-    keywordstyle=\color{darkgray}\bfseries
+    commentstyle=\color{Gray}\emph,
+    keywordstyle=\bfseries
 }
 \lstdefinestyle{listingcode}{
     language=Hoon,
@@ -85,7 +82,7 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{darkgray}\emph,
+    commentstyle=\color{Gray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingblock}{
@@ -99,7 +96,7 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{darkgray}\emph,
+    commentstyle=\color{Gray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingcode_python}{
@@ -114,7 +111,7 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{darkgray}\emph,
+    commentstyle=\color{Gray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 \lstdefinestyle{listingcode_c}{
@@ -129,57 +126,10 @@
     showspaces=false,
     keepspaces,
     upquote=true,
-    commentstyle=\color{darkgray}\emph,
+    commentstyle=\color{Gray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
 
-\lstdefinelanguage{JavaScript}{
-  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-  keywordstyle=\color{blue}\bfseries,
-  ndkeywords={class, export, boolean, throw, implements, import, this},
-  ndkeywordstyle=\color{darkgray}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{//},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{darkgray}\ttfamily,
-  stringstyle=\color{darkgray}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
-}
-\lstdefinestyle{listingcode_js}{
-    language=JavaScript,
-    basicstyle=\setmonofont\small,
-    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
-    frame=tb,
-    tabsize=2,
-    columns=fixed,
-    showstringspaces=false,
-    showtabs=false,
-    showspaces=false,
-    keepspaces,
-    upquote=true,
-    breaklines=true,
-    commentstyle=\emph,
-    keywordstyle=\color{darkgray}\bfseries
-}
-\usepackage{listings-rust}
-\lstdefinestyle{listingcode_rust}{
-    language=Rust,
-    basicstyle=\setmonofont\small,
-    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
-    frame=tb,
-    tabsize=2,
-    columns=fixed,
-    showstringspaces=false,
-    showtabs=false,
-    showspaces=false,
-    keepspaces,
-    upquote=true,
-    breaklines=true,
-    commentstyle=\color{darkgray}\emph,
-    keywordstyle=\color{darkgray}\bfseries
-}
 
 \usepackage{titlesec}
 \newfontfamily\urbitfont{Urbit Sans TT SemiBold}
@@ -193,7 +143,8 @@
 \AtBeginDocument{\renewcommand{\abstractname}{}}
 
 %% Page size
-\usepackage[paperheight=8.5in,paperwidth=5.5in,margin=1in,heightrounded,showframe]{geometry}
+% \usepackage[paperheight=8.5in,paperwidth=5.5in,margin=1in,heightrounded,showframe]{geometry}
+\usepackage[paperheight=8.5in,paperwidth=5.5in,margin=1in,heightrounded]{geometry}
 
 %% Configure first-page footer and later-page header.
 \usepackage{fancyhdr}
@@ -206,7 +157,7 @@
 
 % Turn off when producing release version.
 \usepackage{lineno}
-\linenumbers
+% \linenumbers
 
 % Bibliography management
 \usepackage[
@@ -214,10 +165,11 @@
     style=authoryear-icomp,
     sortlocale=en_US,
     natbib=true,
-    url=false,
+    url=true,
     eprint=false
 ]{biblatex}
 \usepackage[hidelinks,breaklinks=true]{hyperref}
+\renewcommand\UrlFont{\monofont}
 \renewcommand{\UrlBreaks}{\do\/\do-}
 
 % Patch the \bibsetup command to set the bibliography to be ragged-right
@@ -257,6 +209,17 @@
     \iffieldundef{#3}{}{\stripzeros{\thefield{#3}}}%
   }%
 }
+
+% Define a command to enclose the title in quotation marks
+\newcommand{\quotetitle}[1]{``#1''}
+
+% Use the command to enclose the title for @online and @software entries
+\DeclareFieldFormat[online]{title}{\quotetitle{#1}}
+\DeclareFieldFormat[software]{title}{\quotetitle{#1}}
+\DeclareFieldFormat[techreport]{techreport}{\quotetitle{#1}}
+\DeclareFieldFormat[online]{titleaddon}{#1} % Adjust the formatting of titleaddon
+
+\newcommand{\tombstone}{\resizebox{!}{\heightof{T}}{\includegraphics{ustj-logo}}}
 
 % Define a custom citation command for GitHub PRs
 \DeclareCiteCommand{\citetpr}
@@ -308,8 +271,7 @@
     {\usebibmacro{related:init}%
      \usebibmacro{related}}
     {}%
-  \usebibmacro{finentry}
-}
+  \usebibmacro{finentry}}
 
 % Define the custom citation command for @software entries
 \DeclareBibliographyDriver{software}{%
@@ -325,30 +287,20 @@
     {\usebibmacro{related:init}%
      \usebibmacro{related}}
     {}%
-  \usebibmacro{finentry}
-}
+  \usebibmacro{finentry}}
 
 % Redefine the bibliography driver for @techreport entries
 \DeclareBibliographyDriver{techreport}{%
-  \usebibmacro{bibindex}%
-  \usebibmacro{begentry}%
-  \usebibmacro{author/editor}%
-  \setunit{\addspace}%
-  \printfield{title}%
-  \newunit\newblock
-  \usebibmacro{url}%
-  \newunit\newblock
-  \usebibmacro{finentry}%
+    \usebibmacro{bibindex}%
+    \usebibmacro{begentry}%
+    \usebibmacro{author/editor}%
+    \setunit{\addspace}%
+    \printfield{title}%
+    \newunit\newblock
+    \usebibmacro{url}%
+    \newunit\newblock
+    \usebibmacro{finentry}%
 }
-
-% Define a command to enclose the title in quotation marks
-\newcommand{\quotetitle}[1]{``#1''}
-
-% Use the command to enclose the title for @online and @software entries
-\DeclareFieldFormat[online]{title}{\quotetitle{#1}}
-\DeclareFieldFormat[software]{title}{\quotetitle{#1}}
-
-\newcommand{\tombstone}{\resizebox{!}{\heightof{T}}{\includegraphics{ustj-logo}}}
 
 \hfuzz=0.1pt % Adjust the value as needed
 \hbadness=10000 % This value disables any reporting of overfull boxes
