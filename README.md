@@ -60,3 +60,8 @@ The PDF can be built using `make`.
 ### Math Mode
 
 1. Due to limitations of the LaTeX→HTML tool, we will replace all instances of `\mathtt{}` with `\texttt{}`.
+
+### Other Resources
+
+- [Hoffman, “How To Write a Scientific Paper and Format it Using LaTeX”](https://hoffman.physics.harvard.edu/Hoffman-example-paper.pdf)
+
