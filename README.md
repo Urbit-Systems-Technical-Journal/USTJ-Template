@@ -32,6 +32,7 @@ The PDF can be built using `make`.
   - lowercase “kelvin” everywhere it occurs (capitalize “4K”)
   - `IO` → `I/O`
   - scrys → scries
+4. Nock operators are conventionally referred to as “opcodes”, but the choice of whether to mark the opcodes as `0` (code formatting) or simply 0 is left up to the author.  Likewise on 0/1 loobeans.  A particular article should, however, be internally consistent.
 
 
 ### Citations
