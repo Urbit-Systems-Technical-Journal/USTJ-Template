@@ -11,11 +11,14 @@
 \usepackage{mathspec}
 \setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
 \usepackage[osf]{libertineRoman}
-\newfontfamily\monofont{Urbit Sans Mono TT SemiBold}[Scale=MatchLowercase]
+\newfontfamily\monofont{Urbit Sans Mono TT SemiBold}[
+  Scale=MatchLowercase,
+  % BoldFont=Urbit Sans Mono TT Light,
+  ]
 \renewcommand{\setmonofont}{\monofont}
 \renewcommand{\texttt}[1]{{\monofont #1}}
 % Define a new font family for small caps with FakeSlant
-\newfontfamily\slantedsmallcapsfont{Linux Libertine O}[
+\newfontfamily\slantedsmallcapsfont{Libertinus Serif}[
     FakeSlant = 0.1 % Adjust the slant amount as needed
 ]
 % Redefine \textsc to make small caps 25% larger
@@ -25,6 +28,7 @@
 
 \usepackage{listings}
 \usepackage[dvipsnames]{xcolor}
+\definecolor{darkgray}{rgb}{0.25, 0.25, 0.25}
 \lstdefinelanguage{Hoon}
 {
   alsoletter={
@@ -68,7 +72,8 @@
     breaklines=true,
     breakatwhitespace=true,
     commentstyle=\color{darkgray}\emph,
-    keywordstyle=\bfseries
+    keywordstyle=\bfseries,
+    moredelim=[is][\underline]{@}{@}
 }
 \lstdefinestyle{listingcode}{
     language=Hoon,
@@ -85,7 +90,8 @@
     breaklines=true,
     breakatwhitespace=true,
     commentstyle=\color{darkgray}\emph,
-    keywordstyle=\color{darkgray}\bfseries
+    keywordstyle=\bfseries,
+    moredelim=[is][\underline]{@}{@}
 }
 \lstdefinestyle{listingblock}{
     language=Hoon,
@@ -98,8 +104,11 @@
     showspaces=false,
     keepspaces,
     upquote=true,
+    breaklines=true,
+    breakatwhitespace=true,
     commentstyle=\color{darkgray}\emph,
-    keywordstyle=\color{darkgray}\bfseries
+    keywordstyle=\bfseries,
+    moredelim=[is][\underline]{@}{@}
 }
 \lstdefinestyle{listingcode_python}{
     language=Python,
