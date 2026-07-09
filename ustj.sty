@@ -5,16 +5,33 @@
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{calc} % for \heightof in \tombstone
 
+% ============================================================
+%  PER-ARTICLE FONT DEFINITIONS
+%  ----------------------------------------------------------
+%  This is the ONLY block that is meant to differ between
+%  articles.  The default is the "TT" cut of Urbit Sans Mono;
+%  some articles use the "Ax" or "Bar" cuts shipped as .otf
+%  files alongside the manuscript.  To switch, comment out the
+%  default \setmathtt / \monofont lines and uncomment the
+%  matching alternative below.
+% ============================================================
 \usepackage{mathspec}
 \setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
+%\setmathtt[Scale=MatchLowercase]{UrbitSansMonoAx-SemiBold.otf}  % "Ax" cut
 \usepackage[osf]{libertineRoman}
 \newfontfamily\monofont{Urbit Sans Mono TT SemiBold}[
   Scale=MatchLowercase,
   % BoldFont=Urbit Sans Mono TT Light,
   ]
+%\newfontfamily\monofont{UrbitSansMonoAx-SemiBold.otf}[Scale=MatchLowercase]   % "Ax" cut
+%\newfontfamily\monofont{UrbitSansMonoBar-SemiBold.otf}[Scale=MatchLowercase]  % "Bar" cut
 \renewcommand{\setmonofont}{\monofont}
 \renewcommand{\texttt}[1]{{\monofont #1}}
 % Define a new font family for small caps with FakeSlant
@@ -25,6 +42,18 @@
 % \let\oldtextsc\textsc
 % \renewcommand{\textsc}[1]{\scalebox{1.25}{\oldtextsc{#1}}}
 \newcommand{\ssc}[1]{{\slantedsmallcapsfont\textsc{#1}}}
+% ============================================================
+%  END PER-ARTICLE FONT DEFINITIONS
+% ============================================================
+
+% Fixed-width glyphs for Nock notation, for use with the listings
+% `literate=` option (see the Hoon styles below).  Harmless when unused.
+\newlength{\nockmonocolwidth}
+\newcommand{\nockmonochar}[2]{{\begingroup\monofont\settowidth{\nockmonocolwidth}{0}\makebox[\nockmonocolwidth][#1]{#2}\endgroup}}
+\newcommand{\nocklfloor}{\nockmonochar{l}{\symbol{"230A}}}
+\newcommand{\nockrfloor}{\nockmonochar{r}{\symbol{"230B}}}
+\newcommand{\nockomega}{\nockmonochar{c}{\symbol{"03C9}}}
+\newcommand{\nockOmega}{\nockmonochar{c}{\symbol{"03A9}}}
 
 \usepackage{listings}
 \usepackage[dvipsnames]{xcolor}
@@ -140,6 +169,85 @@
     commentstyle=\color{darkgray}\emph,
     keywordstyle=\color{darkgray}\bfseries
 }
+% JavaScript language definition (used by listingcode_js).
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{darkgray}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgray}\ttfamily,
+  stringstyle=\color{darkgray}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinestyle{listingcode_js}{
+    language=JavaScript,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    breaklines=true,
+    commentstyle=\color{darkgray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
+% Rust highlighting is provided by the listings-rust package.
+\usepackage{listings-rust}
+\lstdefinestyle{listingcode_rust}{
+    language=Rust,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    breaklines=true,
+    commentstyle=\color{darkgray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
+\lstdefinestyle{listingcode_lisp}{
+    language=Lisp,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    commentstyle=\color{darkgray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
+\lstdefinestyle{listingcode_sql}{
+    language=SQL,
+    basicstyle=\setmonofont\small,
+    numbers=left, numberstyle=\tiny, stepnumber=5, firstnumber=1, numberfirstline=false,
+    frame=tb,
+    tabsize=2,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    showspaces=false,
+    keepspaces,
+    upquote=true,
+    commentstyle=\color{darkgray}\emph,
+    keywordstyle=\color{darkgray}\bfseries
+}
 
 
 \usepackage{titlesec}
@@ -166,6 +274,10 @@
 \newcommand{\patp}[1]{\texttt{\textasciitilde#1}}
 \newcommand{\github}[1]{\texttt{@#1}}
 
+% Inline links to GitHub pull requests by number.
+\newcommand{\urbitpr}[1]{\href{https://github.com/urbit/urbit/pull/#1}{\texttt{urbit/urbit}~\##1}}
+\newcommand{\verepr}[1]{\href{https://github.com/urbit/vere/pull/#1}{\texttt{urbit/vere}~\##1}}
+
 % Turn off when producing release version.
 \usepackage{lineno}
 % \linenumbers
@@ -177,11 +289,12 @@
     sortlocale=en_US,
     natbib=true,
     url=true,
-    eprint=false
+    eprint=false,
+    maxbibnames=99
 ]{biblatex}
 \usepackage[hidelinks,breaklinks=true]{hyperref}
 \renewcommand\UrlFont{\monofont}
-\renewcommand{\UrlBreaks}{\do\/\do-}
+\renewcommand{\UrlBreaks}{\do\/\do-\do:}
 
 % Patch the \bibsetup command to set the bibliography to be ragged-right
 \usepackage{etoolbox}
@@ -231,6 +344,14 @@
 \DeclareFieldFormat[online]{titleaddon}{#1} % Adjust the formatting of titleaddon
 
 \newcommand{\tombstone}{\resizebox{!}{\heightof{T}}{\includegraphics{ustj-logo}}}
+
+% Inline (parenthetical) citation command for GitHub PRs
+\DeclareCiteCommand{\citepr}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\printfield{usera}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
 
 % Define a custom citation command for GitHub PRs
 \DeclareCiteCommand{\citetpr}
